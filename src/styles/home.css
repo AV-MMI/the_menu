@@ -1,0 +1,17 @@
+
+#headingImg-home {
+	width: 180px;
+	height: 180px;
+}
+
+.headCont {
+	width: 100%;
+}
+
+#home-h1 {
+	text-decoration: underline 5px;
+}
+
+p {
+	font-size: 20px;
+}

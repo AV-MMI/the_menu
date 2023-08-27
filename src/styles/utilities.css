@@ -1,0 +1,17 @@
+.h-flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.v-center-flex {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.v-gap-flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
