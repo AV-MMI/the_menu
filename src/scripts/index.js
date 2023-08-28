@@ -1,7 +1,8 @@
 import '../styles/styles.css';
 import '../styles/utilities.css';
-import * as home from './home.js';
 import * as utilities from './utilities.js';
+import * as home from './home.js';
+import * as menu from './menu.js';
 
 export { mainCont, subCont };
 
@@ -47,26 +48,62 @@ for(let i = 0; i < menuOpts.length; i++){
 }
 
 
+// keeps track of the current tab/last one visited
+const tabs = {
+	home: false,
+	menu: true,
+	contact: false,
+};
+
+
 function optsHandler(e){
 
 	//assign selected class
 	e.target.classList.add('menu-opt-selected');
 
 	//wipe out current content - TODO
-
+	cleanDisplay();
 
 	//display correspondent content
 	if(e.target.id == 'homeLi'){
-		cleanDisplay();
 		home.render();
+
+		//update tabs obj
+		for(let tab in tabs){
+			if(tab == 'home'){
+				tabs[tab] = true;
+			} else {
+				tabs[tab] = false;
+			}
+		}
+
 	}
+
 	else if(e.target.id == 'menuLi'){
-		cleanDisplay();
-		console.log(e.target.id)
+		menu.render();
+
+		//update tabs obj
+		for(let tab in tabs){
+			if(tab == 'menu'){
+				tabs[tab] = true;
+			} else {
+				tabs[tab] = false;
+			}
+		}
+
 	}
+
 	else if(e.target.id == 'contactLi'){
-		cleanDisplay();
-		console.log(e.target.id)
+		//menu render();
+		//update tabs obj
+		for(let tab in tabs){
+			if(tab == 'contact'){
+				tabs[tab] = true;
+			} else {
+				tabs[tab] = false;
+			}
+		}
+
 	}
 
 	//remove selected class from the previous option clicked
@@ -85,18 +122,18 @@ content.appendChild(tabDisplay);
 
 /*render last tab visited*/
 function renderLastTab(){
-	if(utilities.tabs.home){
+	if(tabs.home){
 		home.render();
 		homePage.classList.add('menu-opt-selected');
 	}
 
-	else if(utilities.tabs.menu){
-		// render
+	else if(tabs.menu){
+		menu.render();
 		menuPage.classList.add('menu-opt-selected');
 
 	}
 
-	else if(utilities.tabs.contact){
+	else if(tabs.contact){
 		// render
 		contactPage.classList.add('menu-opt-selected');
 	}

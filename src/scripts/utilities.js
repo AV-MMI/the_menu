@@ -1,5 +1,5 @@
 import * as index from './index.js';
-export { createEl, tabs };
+export { createEl };
 
 function createEl(element, cssClass, innerText, id){
 	const newEl = document.createElement(element);
@@ -28,10 +28,3 @@ function createEl(element, cssClass, innerText, id){
 
 	return newEl;
 }
-
-// keeps track of the current tab/last one visited
-const tabs = {
-	home: true,
-	menu: true,
-	contact: false,
-};
