@@ -122,7 +122,6 @@ dessertsWrapper.appendChild(dessertsFold)
 const typesOfDishes = dishesCont.children;
 
 // Appending all dishes wrapper;
-	// todo: use a loop for it.
 dishesCont.appendChild(risottoWrapper);
 dishesCont.appendChild(pastaWrapper);
 dishesCont.appendChild(meatsWrapper);
@@ -145,24 +144,32 @@ function typeDishHandler(e){
 	let wrapper;
 	let titleOpt;
 
+	// unfold folded dishes
 	if(e.target.classList.contains('title-text')){
 		wrapper = e.target.parentElement.parentElement;
 		titleOpt = e.target.parentElement.parentElement.children[0];
 		foldCont = wrapper.children[1];
-
-		titleOpt.classList.toggle('type-selected');
-		foldCont.classList.toggle('type-unfold');
-		console.log('MAD');
 	}
 
 	if(e.target.classList.contains('type-title')){
 		wrapper = e.target.parentElement;
 		titleOpt = e.target.parentElement.children[0];
 		foldCont = wrapper.children[1];
+	}
 
-		titleOpt.classList.toggle('type-selected');
-		foldCont.classList.toggle('type-unfold');
-		console.log('WORLD');
+	// remove unfold class from all type of dish excep e.target
+	for(let i = 0; i < dishesCont.children.length; i++){
+		if(dishesCont.children[i].children[0] !== titleOpt){
+			if(dishesCont.children[i].children[0].classList.contains('type-selected')){
+				dishesCont.children[i].children[0].classList.toggle('type-selected');
+				dishesCont.children[i].children[1].classList.toggle('type-unfold');
+			}
+		}
+
+		else {
+			titleOpt.classList.toggle('type-selected');
+			foldCont.classList.toggle('type-unfold');
+		}
 	}
 }
 
