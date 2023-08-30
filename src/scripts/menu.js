@@ -4,11 +4,13 @@ import * as utilities from './utilities.js';
 import * as index from './index.js';
 export { render };
 
+// MAIN CONTENT ---START
+
 const dishesCont = utilities.createEl('div', ['dishes-cont', 'v-center-flex'], false, 'dishes-cont');
 const ingredientsCont = utilities.createEl('div', ['ingredients-cont', 'center-h-flex'], false, 'ingredients-cont');
 
 // ** INGREDIENTS CONT
-const pIngredients = utilities.createEl('p', [], 'Click any dish to see its ingredients!', 'pIngredients');
+const pIngredients = utilities.createEl('p', [], 'Click any dish to see its ingredients and how it looks!', 'pIngredients');
 
 ingredientsCont.appendChild(pIngredients);
 
@@ -142,16 +144,19 @@ const dishesObj = {
 			name: 'Mushroom risotto',
 			ingredients: 'mushrooms, olive oil, onion, garlic, arborio rice, white wine, chicken broth, parmesan cheese, parsley, salt, pepper.',
 			selected: false,
+			img: '../img/mushroom-risotto.webp',
 		},
 		r2: {
 			name: 'Risotto alla Milanese',
 			ingredients: 'chicken stock, olive oil, onion, salt, pepper, arborio rice, saffron threads, white wine, parmigiano-reggiano cheese, butter, parsley',
 			selected: false,
+			img: '../img/risotto-milanese.webp',
 		},
 		r3: {
 			name: 'Seafood risotto',
 			ingredients: 'seafood, arborio rice, white wine, chicken/seafood stock, butter, onion, garlic, parmesan cheese, parsley, salt, pepper',
 			selected: false,
+			img: '../img/seafood-risotto.jpg',
 		},
 	},
 
@@ -160,16 +165,19 @@ const dishesObj = {
 			name: 'Spaghetti Carbonara',
 			ingredients: 'spaghetti, guanciale/pancetta, eggs, pecorino romano/parmesan cheese, black pepper',
 			selected: false,
+			img: '../img/spaghetti-carbonara.jpg',
 		},
 		p2: {
 			name: 'Fettuccine Alfredo',
 			ingredients: 'fettuccine, butter, parmesan cheese, heavy cream, salt, pepper',
 			selected: false,
+			img: '../img/fettuccine-alfredo.jpg',
 		},
 		p3: {
 			name: 'Lasagna',
 			ingredients: 'pasta, tomato sauce, ricotta cheese, mozzarella cheese, parmesan cheese',
 			selected: false,
+			img: '../img/lasagna.jpg',
 		},
 	},
 
@@ -178,16 +186,19 @@ const dishesObj = {
 			name: 'Beef Bourguignon',
 			ingredients: 'beef, red wine, onions, carrots, mushrooms, garlic, tomato paste, beef stock, thyme, bay leaves, salt, pepper',
 			selected: false,
+			img: '../img/beef-bourguinon.webp',
 		},
 		m2: {
 			name: 'Pork Chops with Applesauce',
 			ingredients: 'pork chops, applesauce, butter, brown sugar, cinnamon, salt, pepper',
 			selected: false,
+			img: '../img/pork-chops.jpeg',
 		},
 		m3: {
 			name: 'Steak',
 			ingredients: 'steak, salt, pepper, oil',
 			selected: false,
+			img: '../img/steak.jpg',
 		},
 	},
 
@@ -196,16 +207,19 @@ const dishesObj = {
 			name: 'Roast chicken',
 			ingredients: 'chicken, salt, pepper, herbs',
 			selected: false,
+			img: '../img/roast-chicken.webp',
 		},
 		b2: {
 			name: 'Duck confit',
 			ingredients: 'duck legs, duck fat, salt, pepper, herbs',
 			selected: false,
+			img: '../img/duck-confit.webp',
 		},
 		b3: {
 			name: 'Quail a la royale',
 			ingredients: 'quail, mushrooms, foie gras, wine, cream, truffles',
 			selected: false,
+			img: '../img/quail.jpg',
 		},
 	},
 
@@ -214,16 +228,19 @@ const dishesObj = {
 			name: 'Tiramisu',
 			ingredients: 'coffee, mascarpone cheese, sugar, cocoa powder',
 			selected: false,
+			img: '../img/tiramisu.jpg',
 		},
 		d2: {
 			name: 'Chocolate lava cake',
 			ingredients: 'unsalted butter, chocolate, eggs, sugar, flour',
 			selected: false,
+			img: '../img/lava-cake.jpg',
 		},
 		d3: {
 			name: 'Apple pie',
 			ingredients: 'apples, sugar, flour, butter, spices, crust',
 			selected: false,
+			img: '../img/apple-pie.jpg',
 		},
 	},
 }
@@ -297,6 +314,9 @@ function dishHandler(e){
 
 			// display ingredients of corresponding dish ingredients
 			pIngredients.textContent = dishesObj[typeDish][dishN]['ingredients']
+
+			// display corresponding image
+			dishImg.src = dishesObj[typeDish][dishN]['img'];
 		} else {
 			allDishes[i].classList.remove('dish-type-selected');
 
@@ -308,9 +328,19 @@ function dishHandler(e){
 	}
 }
 
+// MAIN CONTENT ---END
+
+// SUB CONTENT ---START
+const imgDisplay = utilities.createEl('div', ['img-display'], false, 'imgDisplay');
+const dishImg = utilities.createEl('img', ['dish-img'], false, 'dishImg');
+dishImg.src = '../img/menu.jpg'
+imgDisplay.appendChild(dishImg);
+// SUB CONTENT ---END
+
 function render(){
 	// MAIN CONTENT
 	index.mainCont.appendChild(dishesCont);
 	index.mainCont.appendChild(ingredientsCont);
 	// SUB CONTENT
+	index.subCont.appendChild(imgDisplay);
 }

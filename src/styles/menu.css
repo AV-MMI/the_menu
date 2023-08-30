@@ -64,3 +64,18 @@
 .dish-type-selected {
 	color: #6BBF59;
 }
+
+
+/*SUBCONT*/
+.img-display {
+	background-color: #F2ECBE;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+}
+
+.dish-img {
+	width: 100%;
+	height: 100%;
+	background-color: blue;
+}
