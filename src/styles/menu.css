@@ -5,7 +5,9 @@
 }
 
 .ingredients-cont {
-	background-color: blue;
+	background-color: #E4E4D0;
+	color: #9A3B3B;
+	padding: 5px;
 	width: 100%;
 	height: 10%;
 }
@@ -57,4 +59,8 @@
 
 .dish-type:hover {
 	color: #EA2B1F;
+}
+
+.dish-type-selected {
+	color: #6BBF59;
 }

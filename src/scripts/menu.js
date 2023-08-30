@@ -5,8 +5,14 @@ import * as index from './index.js';
 export { render };
 
 const dishesCont = utilities.createEl('div', ['dishes-cont', 'v-center-flex'], false, 'dishes-cont');
-const ingredientsCont = utilities.createEl('div', ['ingredients-cont'], false, 'ingredients-cont');
+const ingredientsCont = utilities.createEl('div', ['ingredients-cont', 'center-h-flex'], false, 'ingredients-cont');
 
+// ** INGREDIENTS CONT
+const pIngredients = utilities.createEl('p', [], 'Click any dish to see its ingredients!', 'pIngredients');
+
+ingredientsCont.appendChild(pIngredients);
+
+// ** DISHESCONT
 // RISOTTO
 const risottoWrapper = utilities.createEl('div', ['type-wrapper', 'v-center-flex'], false, 'risotto-wrapper');
 const risottoOpt = utilities.createEl('div', ['type-title', 'center-h-flex'], false, 'risotto-opt');
@@ -17,9 +23,9 @@ const spanRisotto = utilities.createEl('span', ['title-text'], 'Risotto', 'risot
 risottoOpt.appendChild(spanRisotto);
 
 /*risottoFold Content*/
-const rDishOne = utilities.createEl('span', ['dish-type'], 'Mushroom risotto');
-const rDishTwo = utilities.createEl('span', ['dish-type'], 'Risotto alla Milanese');
-const rDishThree = utilities.createEl('span', ['dish-type'], 'Seafood risotto');
+const rDishOne = utilities.createEl('span', ['dish-type'], 'Mushroom risotto', 'r1-risotto');
+const rDishTwo = utilities.createEl('span', ['dish-type'], 'Risotto alla Milanese', 'r2-risotto');
+const rDishThree = utilities.createEl('span', ['dish-type'], 'Seafood risotto', 'r3-risotto');
 
 risottoFold.appendChild(rDishOne);
 risottoFold.appendChild(rDishTwo);
@@ -39,9 +45,9 @@ const spanPasta = utilities.createEl('span', ['title-text'], 'Pasta', 'pasta-spa
 pastaOpt.appendChild(spanPasta);
 
 /*pastaFold Content*/
-const pDishOne = utilities.createEl('span', ['dish-type'], 'Spaghetti Carbonara');
-const pDishTwo = utilities.createEl('span', ['dish-type'], 'Fettuccine Alfredo:');
-const pDishThree = utilities.createEl('span', ['dish-type'], 'Lasagna');
+const pDishOne = utilities.createEl('span', ['dish-type'], 'Spaghetti Carbonara', 'p1-pasta');
+const pDishTwo = utilities.createEl('span', ['dish-type'], 'Fettuccine Alfredo:', 'p2-pasta');
+const pDishThree = utilities.createEl('span', ['dish-type'], 'Lasagna', 'p3-pasta');
 
 pastaFold.appendChild(pDishOne);
 pastaFold.appendChild(pDishTwo);
@@ -61,9 +67,9 @@ const spanMeats = utilities.createEl('span', ['title-text'], 'Meats', 'meats-spa
 meatsOpt.appendChild(spanMeats);
 
 /*meatsFold Content*/
-const mDishOne = utilities.createEl('span', ['dish-type'], 'Beef Bourguignon');
-const mDishTwo = utilities.createEl('span', ['dish-type'], 'Pork Chops with Applesauce');
-const mDishThree = utilities.createEl('span', ['dish-type'], 'Steak');
+const mDishOne = utilities.createEl('span', ['dish-type'], 'Beef Bourguignon', 'm1-meats');
+const mDishTwo = utilities.createEl('span', ['dish-type'], 'Pork Chops with Applesauce', 'm2-meats');
+const mDishThree = utilities.createEl('span', ['dish-type'], 'Steak', 'm3-meats');
 
 meatsFold.appendChild(mDishOne);
 meatsFold.appendChild(mDishTwo);
@@ -83,9 +89,9 @@ const spanBirds = utilities.createEl('span', ['title-text'], 'Birds', 'birds-spa
 birdsOpt.appendChild(spanBirds);
 
 /*birdsFold Content*/
-const bDishOne = utilities.createEl('span', ['dish-type'], 'Roast chicken');
-const bDishTwo = utilities.createEl('span', ['dish-type'], 'Duck confit');
-const bDishThree = utilities.createEl('span', ['dish-type'], 'Quail a la royale');
+const bDishOne = utilities.createEl('span', ['dish-type'], 'Roast chicken', 'b1-birds');
+const bDishTwo = utilities.createEl('span', ['dish-type'], 'Duck confit', 'b2-birds');
+const bDishThree = utilities.createEl('span', ['dish-type'], 'Quail a la royale', 'b3-birds');
 
 birdsFold.appendChild(bDishOne);
 birdsFold.appendChild(bDishTwo);
@@ -105,9 +111,9 @@ const spanDesserts = utilities.createEl('span', ['title-text'], 'Desserts', 'des
 dessertsOpt.appendChild(spanDesserts);
 
 /*dessertsFold Content*/
-const dDishOne = utilities.createEl('span', ['dish-type'], 'Tiramisu');
-const dDishTwo = utilities.createEl('span', ['dish-type'], 'Chocolate lava cake');
-const dDishThree = utilities.createEl('span', ['dish-type'], 'Apple pie');
+const dDishOne = utilities.createEl('span', ['dish-type'], 'Tiramisu', 'd1-desserts');
+const dDishTwo = utilities.createEl('span', ['dish-type'], 'Chocolate lava cake', 'd2-desserts');
+const dDishThree = utilities.createEl('span', ['dish-type'], 'Apple pie', 'd3-desserts');
 
 dessertsFold.appendChild(dDishOne);
 dessertsFold.appendChild(dDishTwo);
@@ -128,6 +134,108 @@ dishesCont.appendChild(meatsWrapper);
 dishesCont.appendChild(birdsWrapper);
 dishesCont.appendChild(dessertsWrapper);
 
+// adding eventListener for each dish (plate)
+const allDishes = dishesCont.getElementsByClassName('dish-type');
+const dishesObj = {
+	risotto: {
+		r1: {
+			name: 'Mushroom risotto',
+			ingredients: 'mushrooms, olive oil, onion, garlic, arborio rice, white wine, chicken broth, parmesan cheese, parsley, salt, pepper.',
+			selected: false,
+		},
+		r2: {
+			name: 'Risotto alla Milanese',
+			ingredients: 'chicken stock, olive oil, onion, salt, pepper, arborio rice, saffron threads, white wine, parmigiano-reggiano cheese, butter, parsley',
+			selected: false,
+		},
+		r3: {
+			name: 'Seafood risotto',
+			ingredients: 'seafood, arborio rice, white wine, chicken/seafood stock, butter, onion, garlic, parmesan cheese, parsley, salt, pepper',
+			selected: false,
+		},
+	},
+
+	pasta: {
+		p1: {
+			name: 'Spaghetti Carbonara',
+			ingredients: 'spaghetti, guanciale/pancetta, eggs, pecorino romano/parmesan cheese, black pepper',
+			selected: false,
+		},
+		p2: {
+			name: 'Fettuccine Alfredo',
+			ingredients: 'fettuccine, butter, parmesan cheese, heavy cream, salt, pepper',
+			selected: false,
+		},
+		p3: {
+			name: 'Lasagna',
+			ingredients: 'pasta, tomato sauce, ricotta cheese, mozzarella cheese, parmesan cheese',
+			selected: false,
+		},
+	},
+
+	meats: {
+		m1: {
+			name: 'Beef Bourguignon',
+			ingredients: 'beef, red wine, onions, carrots, mushrooms, garlic, tomato paste, beef stock, thyme, bay leaves, salt, pepper',
+			selected: false,
+		},
+		m2: {
+			name: 'Pork Chops with Applesauce',
+			ingredients: 'pork chops, applesauce, butter, brown sugar, cinnamon, salt, pepper',
+			selected: false,
+		},
+		m3: {
+			name: 'Steak',
+			ingredients: 'steak, salt, pepper, oil',
+			selected: false,
+		},
+	},
+
+	birds: {
+		b1: {
+			name: 'Roast chicken',
+			ingredients: 'chicken, salt, pepper, herbs',
+			selected: false,
+		},
+		b2: {
+			name: 'Duck confit',
+			ingredients: 'duck legs, duck fat, salt, pepper, herbs',
+			selected: false,
+		},
+		b3: {
+			name: 'Quail a la royale',
+			ingredients: 'quail, mushrooms, foie gras, wine, cream, truffles',
+			selected: false,
+		},
+	},
+
+	desserts: {
+		d1: {
+			name: 'Tiramisu',
+			ingredients: 'coffee, mascarpone cheese, sugar, cocoa powder',
+			selected: false,
+		},
+		d2: {
+			name: 'Chocolate lava cake',
+			ingredients: 'unsalted butter, chocolate, eggs, sugar, flour',
+			selected: false,
+		},
+		d3: {
+			name: 'Apple pie',
+			ingredients: 'apples, sugar, flour, butter, spices, crust',
+			selected: false,
+		},
+	},
+}
+
+for(let i = 0; i < allDishes.length; i++){
+	let dish = allDishes[i];
+	if(dish){
+		dish.addEventListener('click', dishHandler);
+	}
+}
+
+
 // adding eventListener to all type of dishes opt.
 for(let i = 0; i <= typesOfDishes.length; i++){
 	let opt = typesOfDishes[i];
@@ -138,7 +246,7 @@ for(let i = 0; i <= typesOfDishes.length; i++){
 }
 
 
-// go for the fold container
+
 function typeDishHandler(e){
 	let foldCont;
 	let wrapper;
@@ -169,6 +277,33 @@ function typeDishHandler(e){
 		else {
 			titleOpt.classList.toggle('type-selected');
 			foldCont.classList.toggle('type-unfold');
+		}
+	}
+}
+
+function dishHandler(e){
+	let dishN;
+	let typeDish;
+	// unselect all other that are not e.target and assign
+	// corresponding class to selected one.
+	for(let i = 0; i < allDishes.length; i++){
+		if(allDishes[i] == e.target){
+			allDishes[i].classList.add('dish-type-selected');
+
+			dishN = allDishes[i].id.match(/\w+(?=-)/)[0];
+			typeDish = allDishes[i].id.match(/(?<=-)\w+/)[0];
+
+			dishesObj[typeDish][dishN]['selected'] = true;
+
+			// display ingredients of corresponding dish ingredients
+			pIngredients.textContent = dishesObj[typeDish][dishN]['ingredients']
+		} else {
+			allDishes[i].classList.remove('dish-type-selected');
+
+			dishN = allDishes[i].id.match(/\w+(?=-)/)[0];
+			typeDish = allDishes[i].id.match(/(?<=-)\w+/)[0];
+
+			dishesObj[typeDish][dishN]['selected'] = false;
 		}
 	}
 }
