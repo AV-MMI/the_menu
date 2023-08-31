@@ -3,6 +3,7 @@ import '../styles/utilities.css';
 import * as utilities from './utilities.js';
 import * as home from './home.js';
 import * as menu from './menu.js';
+import * as contact from './contact.js';
 
 export { mainCont, subCont };
 
@@ -50,8 +51,8 @@ for(let i = 0; i < menuOpts.length; i++){
 
 // keeps track of the current tab/last one visited
 const tabs = {
-	home: false,
-	menu: true,
+	home: true,
+	menu: false,
 	contact: false,
 };
 
@@ -94,7 +95,8 @@ function optsHandler(e){
 	}
 
 	else if(e.target.id == 'contactLi'){
-		//menu render();
+		contact.render();
+
 		//update tabs obj
 		for(let tab in tabs){
 			if(tab == 'contact'){
@@ -134,7 +136,7 @@ function renderLastTab(){
 	}
 
 	else if(tabs.contact){
-		// render
+		contact.render();
 		contactPage.classList.add('menu-opt-selected');
 	}
 }

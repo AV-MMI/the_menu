@@ -4,6 +4,12 @@
 	justify-content: space-around;
 }
 
+.v-flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
 .v-center-flex {
 	display: flex;
 	flex-direction: column;
@@ -27,4 +33,11 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.img-display {
+	background-color: #F2ECBE;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
 }

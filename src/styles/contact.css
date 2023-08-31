@@ -1,0 +1,15 @@
+.container {
+	background-color: #E4E4D0;
+	padding: 10px;
+}
+
+.span-bold {
+	font-weight: bold;
+	color: #96C291;
+}
+
+#imgDisplay {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}

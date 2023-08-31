@@ -48,7 +48,7 @@ pastaOpt.appendChild(spanPasta);
 
 /*pastaFold Content*/
 const pDishOne = utilities.createEl('span', ['dish-type'], 'Spaghetti Carbonara', 'p1-pasta');
-const pDishTwo = utilities.createEl('span', ['dish-type'], 'Fettuccine Alfredo:', 'p2-pasta');
+const pDishTwo = utilities.createEl('span', ['dish-type'], 'Fettuccine Alfredo', 'p2-pasta');
 const pDishThree = utilities.createEl('span', ['dish-type'], 'Lasagna', 'p3-pasta');
 
 pastaFold.appendChild(pDishOne);

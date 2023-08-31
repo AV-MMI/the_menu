@@ -9,7 +9,6 @@ module.exports = {
     homePage: './src/scripts/home.js',
     menuPage: './src/scripts/menu.js',
     contactPage: './src/scripts/contact.js',
-    localStorage: './src/scripts/localStorage.js',
     utilities: './src/scripts/utilities.js'
   },
 
